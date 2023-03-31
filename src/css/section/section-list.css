@@ -1,0 +1,10 @@
+.section__list{
+
+    color: var(--bg-primary-color);
+    font-size:1.2rem;
+}
+
+.section__list.active-scroll{
+    
+    overflow-y: scroll;
+}

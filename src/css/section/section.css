@@ -1,0 +1,30 @@
+.main__section{
+    background-color: var(--bg-primary-color);
+    box-shadow: -2px 4px rgb(0 0 0 / 10%);
+    display: flex;
+    flex-direction: column;
+    padding:40px 50px;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.main__section h1{
+    font-size: 2rem;
+}
+
+.section-footer{
+ position: absolute;
+ bottom: 0;
+ height: 5.5rem;
+ align-self: flex-end;
+ display: flex;
+ align-items: start;
+ gap:1rem;
+ z-index: 100;
+}
+
+.section-footer span:nth-child(1),
+.section-footer span:nth-child(2){
+    font-size: 2rem;
+}
