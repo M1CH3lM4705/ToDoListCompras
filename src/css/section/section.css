@@ -10,21 +10,38 @@
 }
 
 .main__section h1{
-    font-size: 2rem;
+    font-size: 3.5rem;
 }
 
 .section-footer{
  position: absolute;
  bottom: 0;
+ left:0;
  height: 5.5rem;
  align-self: flex-end;
  display: flex;
+ justify-content: end;
+ padding-right: 50px;
  align-items: start;
  gap:1rem;
+ width:100%;
  z-index: 100;
 }
 
-.section-footer span:nth-child(1),
-.section-footer span:nth-child(2){
+.section-footer span{
     font-size: 2rem;
+}
+
+@media (max-width:450px) {
+    .main__section h1{
+        text-align: center;
+    }
+
+    .section-footer{
+        justify-content: end;
+        width: 100%;
+    }
+    .section-footer span{
+        font-size: 1.8rem;
+    }
 }
