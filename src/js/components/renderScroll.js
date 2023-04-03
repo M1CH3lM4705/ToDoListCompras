@@ -1,6 +1,6 @@
 export default function ScrollLista(produtos) {
   const footer = document.querySelector('.section-footer')
-  console.dir(produtos)
+  
   const tamanhoDaLista = () => {
     return produtos.clientHeight + produtos.offsetTop
   }

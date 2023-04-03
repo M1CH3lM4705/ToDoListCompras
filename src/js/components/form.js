@@ -1,6 +1,16 @@
 const Form = () => {
   const formElement = document.querySelector('form');
 
+  const formHtml = `
+    <form>
+      <h2>Inserir Produto</h2>
+      <input class="css-input" type="text" minlength="5" name="produto" placeholder="Digite o nome do item" required>
+      <input class="css-input" type="number" placeholder="Digite a quantidades do item" name="quantidade" required pattern="[0-9]+" maxlength="5">
+      <input class="css-input" type="text"  placeholder="Digite o valor do item" name="valor" required pattern="^([.\\d]{1,60})$">
+      <input class="" type="submit"value="Enviar">
+    </form>
+  `
+
   const submitForm = (product, toggleModal) => {
     if(!formElement) return;
     formElement.addEventListener('submit', e => {
@@ -20,6 +30,7 @@ const Form = () => {
   }
 
   return {
+    formHtml,
     submitForm
   }
 }
