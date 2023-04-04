@@ -5,18 +5,19 @@ const modal = () => {
   const { submitForm, formHtml } = Form();
   const dataModal = document?.querySelector('[data-modal="modal"]');
   let modal;
-  const form = `
+  
+  const form = props => `
   <div class="modal">
     <div class="content">
-        ${formHtml}
+        ${formHtml(props)}
     </div>
   </div>
   `
-
-  const renderModal = (product) => {
+  
+  const renderModal = (product, props = {}) => {
     if(!dataModal)
       return;
-    dataModal.innerHTML = form;
+    dataModal.innerHTML = form(props);
     modal =  document.querySelector('.modal');
     
     toggleModal();
@@ -30,7 +31,7 @@ const modal = () => {
   }
 
   window.addEventListener('click', e => {
-    if(e.target == modal)
+    if(e.target === modal)
       toggleModal();
   })
 

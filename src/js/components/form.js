@@ -1,21 +1,24 @@
 const Form = () => {
-  const formElement = document.querySelector('form');
 
-  const formHtml = `
+  const formHtml = props => `
+    
     <form>
-      <h2>Inserir Produto</h2>
-      <input class="css-input" type="text" minlength="5" name="produto" placeholder="Digite o nome do item" required>
-      <input class="css-input" type="number" placeholder="Digite a quantidades do item" name="quantidade" required pattern="[0-9]+" maxlength="5">
-      <input class="css-input" type="text"  placeholder="Digite o valor do item" name="valor" required pattern="^([.\\d]{1,60})$">
+      <h2>${props.id ? 'Editar' : 'Inserir' } Produto</h2>
+      <input name="id" type="hidden" value="${Object.keys(props).length ? props.id : ''}" />
+      <input class="css-input" type="text" value="${Object.keys(props).length ? props.produto : ''}" minlength="5" name="produto" placeholder="Digite o nome do item" required>
+      <input class="css-input" type="number" value="${Object.keys(props).length ? props.quantidade : ''}" placeholder="Digite a quantidades do item" name="quantidade" required pattern="[0-9]+" maxlength="5">
+      <input class="css-input" type="text" value="${Object.keys(props).length ? props.valor : ''}" placeholder="Digite o valor do item" name="valor" required pattern="^([.\\d]{1,60})$">
       <input class="" type="submit"value="Enviar">
     </form>
   `
 
   const submitForm = (product, toggleModal) => {
-    if(!formElement) return;
+    const formElement = document.querySelector('form');
+
+    if (!formElement) return;
     formElement.addEventListener('submit', e => {
       e.preventDefault()
-      
+
       product(obterValoresInput(e.target))
       toggleModal();
     })

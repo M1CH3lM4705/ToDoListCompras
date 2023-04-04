@@ -2,15 +2,26 @@ import product from "./product-item.js";
 import ScrollLista from "./renderScroll.js";
 import Utils from "../utils/tratar-dados.js";
 
-export default function Products(){
+export default function Products(renderModal){
   const produtos = document.querySelector('[data-products="products"]')
   const total = document.querySelector('[data-total]');
   const itemsCalculos = []
 
-  const addProduct = items => {
+  const addProduto = items => {
+      
+    save(items, renderizarNovoProduto);
+  }
+
+  function save(items, fn){
     const {item, calculoPorItem } = product(items)
     
-    renderizar(item, calculoPorItem);
+    fn(item, calculoPorItem);
+    exibirMoeda(itemsCalculos);
+    ScrollLista(produtos)
+  }
+
+  const editarProduto = items => {
+    save(items)
   }
   
   const exibirMoeda = (itemsCalculos) => {   
@@ -20,26 +31,30 @@ export default function Products(){
     total.innerHTML = converterEmMoeda(valor)
   }
 
-  function renderizar(item, calculoPorItem) {
-    const xHtml = new DOMParser().parseFromString(item, 'text/xml');
+  function renderizarNovoProduto(item, calculoPorItem) {
+    
     itemsCalculos.push(calculoPorItem());
-    produtos.insertAdjacentHTML('beforeend', item);
-    exibirMoeda(itemsCalculos);
-    ScrollLista(produtos)
+    produtos.insertAdjacentHTML('beforeend', item);  
+  }
+
+  const exibirDadosParaEditar = elementoClicado => {
+    
+      const idEditar = elementoClicado.dataset.editar
+      const valores = Utils.tratarDadosItemsProduto(produtos, idEditar)
+      valores['id'] = idEditar
+      renderModal(addProduto, valores)
   }
 
   produtos.addEventListener('click', e => {
     const elementoClicado = e.target
     if(elementoClicado.dataset.editar){
-      const idEditar = elementoClicado.dataset.editar
-      const valores = Utils.tratarDadosItemsProduto(produtos, idEditar)
-      console.log(valores)
+      exibirDadosParaEditar(elementoClicado)
     }
   })
   
   return {
     produtos,
-    addProduct
+    addProduto
   }
 }
 
