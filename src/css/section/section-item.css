@@ -50,6 +50,10 @@
     opacity: 1;
 }
 
+.section__item:hover .section__item-action i{
+    cursor: pointer;
+}
+
 @keyframes upItem{
     0%{
         transform: translatey(100px);
