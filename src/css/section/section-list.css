@@ -10,5 +10,5 @@
 }
 
 .section__list.active-scroll ~ .section-footer{
-    color:var(--text-color);
+    color:var(--bg-primary-color);
 } 

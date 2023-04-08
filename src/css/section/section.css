@@ -35,6 +35,8 @@
 @media (max-width:450px) {
     .main__section h1{
         text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .section-footer{
@@ -42,6 +44,8 @@
         width: 100%;
     }
     .section-footer span{
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        padding-top:1.1rem;
+        color:var(--bg-primary-color)
     }
 }
