@@ -7,15 +7,22 @@ export default function Products(renderModal) {
   const total = document.querySelector('[data-total]');
   const itemsCalculos = []
 
+  function obterReferenciaItemDaLista(id) {
+    return produtos.querySelector(`[data-product="${id}"]`);
+  }
   const addProduto = items => {
 
     save(items, renderizarNovoProduto);
   }
 
   function save(items, fn) {
-    const { item, obj } = product(items)
+    if(items){
+      const { item, obj } = product(items)
+      fn(item, obj);
+    }else{
+      fn()
+    }
 
-    fn(item, obj);
     exibirMoeda(itemsCalculos);
     ScrollLista(produtos)
   }
@@ -33,7 +40,7 @@ export default function Products(renderModal) {
       
       const element = Utils.convertTextoEmHtml(item, `[data-product="${obj.id}"]`)
       editarObjetoNoArray(obj)
-      const elementoOld = produtos.querySelector(`[data-product="${obj.id}"]`)
+      const elementoOld = obterReferenciaItemDaLista(obj.id)
       
       produtos.replaceChild(element, elementoOld)
     })
@@ -64,12 +71,29 @@ export default function Products(renderModal) {
     const elementoClicado = e.target
     if (elementoClicado.dataset.editar) {
       exibirDadosParaEditar(elementoClicado)
+      return;
     }
+    if(elementoClicado.dataset.remover)
+      remover(elementoClicado)
   })
+
+  const removerItemDaLista = id => {
+    itemsCalculos.splice(itemsCalculos.indexOf(id), 1)
+  }
+  const remover = target => {
+    
+    save(null, function(){
+      const idRemover = target.dataset.remover;
+      removerItemDaLista(idRemover)
+      const productItem = obterReferenciaItemDaLista(idRemover)
+      productItem.remove();
+    })
+  }
 
   return {
     produtos,
-    addProduto
+    addProduto,
+    remover
   }
 }
 
@@ -81,6 +105,5 @@ const calculo = valores => {
 
 const converterEmMoeda = valor =>
   valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-
 
 

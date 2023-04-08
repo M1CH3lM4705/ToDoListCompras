@@ -11,7 +11,7 @@ const product = ({produto, quantidade, valor, id = null}) => {
       </div>
       <div class="section__item-action">
         <i class="fa-regular fa-pen-to-square" data-editar="${productId}"></i>
-        <i class="fa-regular fa-trash-can"></i>
+        <i class="fa-regular fa-trash-can" data-remover="${productId}"></i>
       </div>
     </div>`
 

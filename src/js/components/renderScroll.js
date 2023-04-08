@@ -9,8 +9,9 @@ export default function ScrollLista(produtos) {
     tamanhoDaLista() >= footer.offsetTop;
 
   const ativarScroll = () => {
-    if(aHlistaEhMaiorQueOFooter())
-      produtos.classList.add('active-scroll')
+    aHlistaEhMaiorQueOFooter() ?
+      produtos.classList.add('active-scroll') :
+      produtos.classList.remove('active-scroll')
   }
 
   ativarScroll();
