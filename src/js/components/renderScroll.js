@@ -8,9 +8,14 @@ export default function ScrollLista(produtos) {
   const aHlistaEhMaiorQueOFooter = () =>
     tamanhoDaLista() >= footer.offsetTop;
 
+  const ativarScollComTamnhoFixo = () => {
+    produtos.classList.add('active-scroll')
+    produtos.style.maxHeight = `${tamanhoDaLista()}px`
+  }
+
   const ativarScroll = () => {
     aHlistaEhMaiorQueOFooter() ?
-      produtos.classList.add('active-scroll') :
+      ativarScollComTamnhoFixo() :
       produtos.classList.remove('active-scroll')
   }
 

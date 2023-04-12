@@ -1,5 +1,7 @@
+import Utils from "../utils/tratar-dados.js";
+
 const product = ({produto, quantidade, valor, id = null}) => {
-  const valorConvertido = Number(valor.replace(/,/g, ".")).toLocaleString('pt-br', {style: 'currency', currency:'BRL'})
+  const valorConvertido = Utils.convertToStringMoney(valor)
   const productId = id || crypto.randomUUID();
 
   const itemHtml = `

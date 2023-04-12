@@ -10,8 +10,8 @@ export default class Utils {
     return { produto, quantidade, valor }
   }
 
-  static converterParaInt = (str) =>
-    parseInt(str.replace(/[^\d,]+/g, ''))
+  static converterParaDecimal = (str) =>
+    Number(str.replace(/[^\d,]+/g, '').replace(',','.'))
 
   static stringUnidadeParaInt = str =>
     parseInt(str.substring(0, 1))
@@ -22,4 +22,7 @@ export default class Utils {
     const element = doc.querySelector(ref)
     return element;
   }
+
+  static convertToStringMoney = valor => 
+    Number(valor.replace(/,/g, ".")).toLocaleString('pt-br', {style: 'currency', currency:'BRL'})
 }

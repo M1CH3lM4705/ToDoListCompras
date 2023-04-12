@@ -67,19 +67,10 @@ export default function Products(renderModal) {
     renderModal(editarProduto, valores)
   }
 
-  produtos.addEventListener('click', e => {
-    const elementoClicado = e.target
-    if (elementoClicado.dataset.editar) {
-      exibirDadosParaEditar(elementoClicado)
-      return;
-    }
-    if(elementoClicado.dataset.remover)
-      remover(elementoClicado)
-  })
-
   const removerItemDaLista = id => {
     itemsCalculos.splice(itemsCalculos.indexOf(id), 1)
   }
+
   const remover = target => {
     
     save(null, function(){
@@ -89,6 +80,16 @@ export default function Products(renderModal) {
       productItem.remove();
     })
   }
+
+  produtos.addEventListener('click', e => {
+    const elementoClicado = e.target
+    if (elementoClicado.dataset.editar) {
+      exibirDadosParaEditar(elementoClicado)
+      return;
+    }
+    if(elementoClicado.dataset.remover)
+      remover(elementoClicado)
+  })
 
   return {
     produtos,
