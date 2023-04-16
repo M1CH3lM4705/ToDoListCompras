@@ -10,13 +10,19 @@ export default function ScrollLista(produtos) {
 
   const ativarScollComTamnhoFixo = () => {
     produtos.classList.add('active-scroll')
-    produtos.style.maxHeight = `${tamanhoDaLista()}px`
+    //produtos.style.maxHeight = `${tamanhoDaLista()}px`
+    produtos.style.maxHeight = `${500}px`
+  }
+
+  const removerScrollComTamanhoFixo = () => {
+    produtos.classList.remove('active-scroll')
+    produtos.style.maxHeight = 'none';
   }
 
   const ativarScroll = () => {
     aHlistaEhMaiorQueOFooter() ?
       ativarScollComTamnhoFixo() :
-      produtos.classList.remove('active-scroll')
+      removerScrollComTamanhoFixo();
   }
 
   ativarScroll();
